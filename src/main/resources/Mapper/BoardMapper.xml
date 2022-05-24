@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="study.board.Test.mapper.BoardMapper">
+
+	<select id="boardList" resultType="study.board.Test.model.BoardDTO">
+		SELECT b_no, b_id, b_title, b_written_date FROM board_tbl;
+	</select>
+
+	<select id="aContent" resultType="study.board.Test.model.BoardDTO">
+		SELECT b_no, b_id, b_title, b_content, b_written_date FROM board_tbl WHERE b_no = #{b_no};
+	</select>
+	
+	<insert id="boardInsert" parameterType="study.board.Test.model.BoardDTO">
+		INSERT INTO board_tbl (b_id, b_pw, b_title, b_content) VALUES(#{b_id}, #{b_pw}, #{b_title}, #{b_content});
+	</insert>
+	
+	<update id="aContentUpdate" parameterType="study.board.Test.model.BoardDTO">
+		UPDATE board_tbl SET b_title = #{b_title}, b_content= #{b_content} WHERE b_no = #{b_no};
+	</update>
+	
+	<delete id="aContentDelete">
+		DELETE FROM board_tbl WHERE b_no = #{b_no};
+	</delete>
+	
+</mapper>
